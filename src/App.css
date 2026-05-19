@@ -1,0 +1,30 @@
+/* ═══════════════════════════════════════════
+   App — Parallax Stack Layout
+   ═══════════════════════════════════════════ */
+
+.parallax-stack {
+  position: relative;
+  width: 100%;
+}
+
+/* Each layer uses sticky positioning for the parallax "cake layer" effect */
+.parallax-layer {
+  position: relative;
+  width: 100%;
+}
+
+.parallax-layer--hero {
+  z-index: 1;
+}
+
+.parallax-layer--tech {
+  z-index: 2;
+}
+
+.parallax-layer--timeline {
+  z-index: 3;
+}
+
+.parallax-layer--contact {
+  z-index: 4;
+}

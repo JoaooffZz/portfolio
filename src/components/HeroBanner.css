@@ -1,0 +1,204 @@
+/* ═══════════════════════════════════════════
+   CAMADA 1 — Hero Banner
+   ═══════════════════════════════════════════ */
+
+.hero-banner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  background: var(--color-void);
+  z-index: 1;
+}
+
+/* ── Background gradients ── */
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 70% 50%, #102620 0%, #000000 70%);
+  z-index: 0;
+}
+
+.hero-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle 400px at 70% 50%, rgba(54,244,164,0.04) 0%, transparent 70%);
+  z-index: 1;
+}
+
+/* ── Photo ── */
+.hero-photo-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 2;
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Gradient left fade */
+.hero-photo-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #000000 0%, transparent 40%);
+  z-index: 3;
+}
+
+/* Gradient bottom fade */
+.hero-photo-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #000000 0%, transparent 30%);
+  z-index: 3;
+}
+
+/* ── Typewriter ── */
+.hero-typewriter {
+  position: absolute;
+  top: 40px;
+  left: 64px;
+  z-index: 10;
+  font-family: var(--font-display);
+  font-size: 15.36px;
+  font-weight: 400;
+  letter-spacing: 1.54px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.hero-typewriter .cursor {
+  display: inline-block;
+  color: var(--color-accent);
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ── Name ── */
+.hero-name-block {
+  position: absolute;
+  bottom: 80px;
+  left: 64px;
+  z-index: 10;
+}
+
+.hero-separator {
+  width: 200px;
+  height: 1px;
+  background: var(--color-border);
+  margin-bottom: 24px;
+}
+
+.hero-name {
+  font-family: var(--font-display);
+  font-size: 96px;
+  font-weight: 330;
+  line-height: 1.00;
+  color: var(--color-white);
+  font-feature-settings: "ss03";
+}
+
+.hero-name span {
+  display: block;
+}
+
+/* ── Scroll Indicator ── */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.scroll-indicator-text {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #52525B;
+  font-weight: 400;
+}
+
+.scroll-indicator-arrow {
+  color: var(--color-muted);
+  animation: bounceDown 1.5s ease-in-out infinite;
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* ═══ Responsive ═══ */
+@media (max-width: 1024px) {
+  .hero-typewriter {
+    top: 32px;
+    left: 32px;
+  }
+
+  .hero-name-block {
+    bottom: 60px;
+    left: 32px;
+  }
+
+  .hero-name {
+    font-size: 70px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-photo-container {
+    width: 100%;
+  }
+
+  .hero-photo-container::before {
+    background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, transparent 60%);
+  }
+
+  .hero-photo-container::after {
+    background: linear-gradient(to top, #000000 0%, transparent 40%);
+  }
+
+  .hero-typewriter {
+    top: 24px;
+    left: 16px;
+    font-size: 12px;
+  }
+
+  .hero-name-block {
+    bottom: 48px;
+    left: 16px;
+  }
+
+  .hero-name {
+    font-size: 48px;
+  }
+
+  .hero-separator {
+    width: 120px;
+  }
+
+  .scroll-indicator {
+    bottom: 16px;
+  }
+}

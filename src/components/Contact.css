@@ -1,0 +1,239 @@
+/* ═══════════════════════════════════════════
+   CAMADA 4 — Contato & Redes Sociais
+   ═══════════════════════════════════════════ */
+
+.contact-section {
+  position: relative;
+  background: var(--color-deep-teal);
+  padding: 120px 0;
+  z-index: 4;
+}
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 15%;
+  background: linear-gradient(to bottom, #000000 0%, #02090A 100%);
+  z-index: 0;
+}
+
+.contact-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 64px;
+  text-align: center;
+}
+
+/* ── Title ── */
+.contact-title {
+  font-family: var(--font-display);
+  font-size: 70px;
+  font-weight: 330;
+  line-height: 1.00;
+  color: var(--color-white);
+  font-feature-settings: "ss03";
+  margin-bottom: 48px;
+}
+
+/* ── Card ── */
+.contact-card {
+  background: var(--color-dark-forest);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 48px;
+  max-width: 680px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-card);
+  text-align: left;
+}
+
+.contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--color-muted);
+  transition: color 200ms ease;
+}
+
+a.contact-item:hover {
+  color: var(--color-white);
+}
+
+.contact-item-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+/* ── Buttons ── */
+.contact-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-white);
+  color: #000000;
+  border-radius: 9999px;
+  padding: 12px 26px 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.28px;
+  border: none;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--color-white);
+  border: 2px solid var(--color-white);
+  border-radius: 9999px;
+  padding: 10px 24px 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.28px;
+  transition: background 200ms ease, transform 200ms ease;
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-1px);
+}
+
+.btn-ghost:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ── Divider ── */
+.contact-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--color-border);
+  margin: 64px 0;
+}
+
+/* ── Social Icons ── */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: #52525B;
+  transition: color 200ms ease, transform 200ms ease;
+}
+
+.social-link:hover {
+  color: var(--color-accent);
+  transform: scale(1.15);
+}
+
+.social-link svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ── Footer ── */
+.footer-text {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-shade-70);
+  letter-spacing: 0.28px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* ═══ Responsive ═══ */
+@media (max-width: 1024px) {
+  .contact-inner {
+    padding: 0 32px;
+  }
+
+  .contact-title {
+    font-size: 56px;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-section {
+    padding: 80px 0;
+  }
+
+  .contact-inner {
+    padding: 0 16px;
+  }
+
+  .contact-title {
+    font-size: 36px;
+    margin-bottom: 32px;
+  }
+
+  .contact-card {
+    padding: 24px;
+    border-radius: 16px;
+  }
+
+  .contact-item {
+    font-size: 15px;
+  }
+
+  .contact-buttons {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contact-divider {
+    margin: 40px 0;
+  }
+
+  .footer-text {
+    font-size: 12px;
+  }
+}

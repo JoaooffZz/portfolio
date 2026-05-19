@@ -1,0 +1,106 @@
+/* ═══════════════════════════════════════════════════════════
+   DESIGN SYSTEM — João Paulo Portfolio
+   Inspired by Shopify: dark-first, cinematic, elegant
+   ═══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  /* ── Palette ── */
+  --color-void:        #000000;
+  --color-deep-teal:   #02090A;
+  --color-dark-forest: #061A1C;
+  --color-forest:      #102620;
+  --color-border:      #1E2C31;
+  --color-accent:      #36F4A4;
+  --color-white:       #FFFFFF;
+  --color-muted:       #A1A1AA;
+  --color-shade-50:    #71717A;
+  --color-shade-70:    #3F3F46;
+
+  /* ── Typography ── */
+  --font-display: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  /* ── Shadows (multi-layer) ── */
+  --shadow-card:
+    rgba(0,0,0,0.10) 0px 0px 0px 1px,
+    rgba(0,0,0,0.10) 0px 2px 2px,
+    rgba(0,0,0,0.10) 0px 4px 4px,
+    rgba(0,0,0,0.10) 0px 8px 8px,
+    rgba(255,255,255,0.03) 0px 1px 0px inset;
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-display);
+  background: var(--color-void);
+  color: var(--color-white);
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: var(--font-display);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-shade-70);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-shade-50);
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(54, 244, 164, 0.2);
+  color: var(--color-white);
+}

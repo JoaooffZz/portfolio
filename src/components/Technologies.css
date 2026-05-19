@@ -1,0 +1,134 @@
+/* ═══════════════════════════════════════════
+   CAMADA 2 — Technologies (Carousels)
+   ═══════════════════════════════════════════ */
+
+.tech-section {
+  position: relative;
+  background: var(--color-dark-forest);
+  padding: 80px 0;
+  z-index: 2;
+  border-top: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+/* ── Category label ── */
+.tech-label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 24px;
+  padding-left: 64px;
+}
+
+/* ── Carousel container ── */
+.carousel-wrapper {
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 48px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+.carousel-wrapper:last-child {
+  margin-bottom: 0;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: scrollCarousel 30s linear infinite;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.carousel-track.reverse {
+  animation: scrollCarouselReverse 25s linear infinite;
+}
+
+.carousel-track.reverse:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollCarousel {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scrollCarouselReverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* ── Tech Badge ── */
+.tech-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  padding: 8px 20px;
+  white-space: nowrap;
+  transition: background 200ms ease, border-color 200ms ease;
+  cursor: default;
+}
+
+.tech-badge:hover {
+  background: rgba(54, 244, 164, 0.08);
+  border-color: rgba(54, 244, 164, 0.3);
+}
+
+.tech-badge-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.tech-badge-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+}
+
+.tech-badge-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-white);
+  letter-spacing: 0.28px;
+}
+
+/* ═══ Responsive ═══ */
+@media (max-width: 1024px) {
+  .tech-label {
+    padding-left: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .tech-section {
+    padding: 48px 0;
+  }
+
+  .tech-label {
+    padding-left: 16px;
+    font-size: 11px;
+  }
+
+  .carousel-track {
+    animation-duration: 40s !important;
+  }
+
+  .carousel-track.reverse {
+    animation-duration: 35s !important;
+  }
+}
