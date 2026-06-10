@@ -1,0 +1,318 @@
+/* ═══════════════════════════════════════════
+   CAMADA ADICIONAL — Bibliotecas (Neubrutalism)
+   ═══════════════════════════════════════════ */
+
+.libraries-section {
+  position: relative;
+  background: var(--bg-page);
+  padding: 100px 0;
+  z-index: 3;
+  border-top: var(--border-width) solid var(--color-border);
+  overflow: hidden;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ── Section Title ── */
+.libraries-header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.libraries-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-text);
+  margin-bottom: 16px;
+  transition: color 0.3s ease;
+}
+
+.libraries-title-line {
+  width: 80px;
+  height: 4px;
+  background: var(--color-border);
+  margin: 0 auto;
+  transition: background-color 0.3s ease;
+}
+
+/* ── Container ── */
+.libraries-container {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: center;
+}
+
+/* ── Card ── */
+.library-card {
+  display: flex;
+  flex-direction: row;
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: 4px;
+  width: 100%;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Theme-dependent Shadow */
+[data-theme="dark"] .library-card {
+  --card-shadow-color: var(--color-neon-green);
+  box-shadow: 8px 8px 0px 0px var(--card-shadow-color);
+}
+
+[data-theme="light"] .library-card {
+  --card-shadow-color: var(--color-black);
+  box-shadow: 8px 8px 0px 0px var(--card-shadow-color);
+}
+
+.library-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0px 0px var(--card-shadow-color);
+}
+
+/* ── Banner/Logo area ── */
+.library-banner-container {
+  position: relative;
+  width: 38%;
+  min-width: 250px;
+  background: #0f1c1f; /* dark forest shade that contrasts nicely with the logo */
+  border-right: var(--border-width) solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  transition: border-color 0.3s ease;
+}
+
+[data-theme="light"] .library-banner-container {
+  background: #f0fdf4; /* light minty background in light theme */
+}
+
+.library-banner {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+/* Language Badge */
+.library-lang-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--color-neon-green);
+  color: var(--color-black);
+  border: var(--border-width-sm) solid var(--color-border);
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  box-shadow: 2px 2px 0px 0px var(--color-border);
+  text-transform: uppercase;
+}
+
+/* ── Content Area ── */
+.library-content {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.library-top {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.library-name {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 850;
+  color: var(--color-text);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.library-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.library-tag {
+  background: var(--color-white);
+  color: var(--color-black);
+  border: var(--border-width-sm) solid var(--color-border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 1px 1px 0px 0px var(--color-border);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Distribute tag backgrounds */
+.library-tag:nth-child(4n+1) { background: var(--color-aloe); }
+.library-tag:nth-child(4n+2) { background: var(--color-pistachio); }
+.library-tag:nth-child(4n+3) { background: var(--color-white); }
+.library-tag:nth-child(4n+4) { background: var(--color-neon-green); }
+
+.library-description {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin-bottom: 24px;
+  transition: color 0.3s ease;
+}
+
+/* ── Highlights Section ── */
+.library-features-section {
+  margin-bottom: 28px;
+}
+
+.library-features-title {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.library-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.library-feature-item {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  padding-left: 20px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.library-feature-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 6px;
+  height: 6px;
+  background: var(--color-neon-green);
+  border: 1px solid var(--color-border);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ── Footer / Button ── */
+.library-footer {
+  margin-top: auto;
+  display: flex;
+}
+
+.btn-github-neubrutal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-black);
+  background: var(--color-neon-green);
+  border: var(--border-width-sm) solid var(--color-border);
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px 0px var(--color-border);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.3s ease;
+}
+
+[data-theme="light"] .btn-github-neubrutal {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+.btn-github-neubrutal:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px var(--color-border);
+}
+
+.btn-github-neubrutal:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px var(--color-border);
+}
+
+.btn-github-icon {
+  transition: transform 0.2s ease;
+}
+
+.btn-github-neubrutal:hover .btn-github-icon {
+  transform: rotate(8deg) scale(1.1);
+}
+
+/* ═══ Responsive ═══ */
+@media (max-width: 992px) {
+  .libraries-container {
+    padding: 0 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .libraries-section {
+    padding: 80px 0;
+  }
+
+  .libraries-header {
+    margin-bottom: 40px;
+  }
+
+  .libraries-container {
+    padding: 0 24px;
+    gap: 32px;
+  }
+
+  .library-card {
+    flex-direction: column;
+  }
+
+  .library-banner-container {
+    width: 100%;
+    min-width: 100%;
+    border-right: none;
+    border-bottom: var(--border-width) solid var(--color-border);
+    padding: 32px;
+  }
+
+  .library-content {
+    padding: 24px;
+  }
+
+  .library-name {
+    font-size: 24px;
+  }
+}

@@ -1,5 +1,6 @@
 import HeroBanner from './components/HeroBanner';
 import Technologies from './components/Technologies';
+import Libraries from './components/Libraries';
 import Timeline from './components/Timeline';
 import Contact from './components/Contact';
 import ThemeToggle from './components/ThemeToggle';
@@ -14,6 +15,9 @@ function App() {
       </div>
       <div className="parallax-layer parallax-layer--tech">
         <Technologies />
+      </div>
+      <div className="parallax-layer parallax-layer--libraries">
+        <Libraries />
       </div>
       <div className="parallax-layer parallax-layer--timeline">
         <Timeline />

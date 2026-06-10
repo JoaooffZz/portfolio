@@ -21,10 +21,14 @@
   z-index: 2;
 }
 
-.parallax-layer--timeline {
+.parallax-layer--libraries {
   z-index: 3;
 }
 
-.parallax-layer--contact {
+.parallax-layer--timeline {
   z-index: 4;
+}
+
+.parallax-layer--contact {
+  z-index: 5;
 }
