@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   CAMADA 1 — Hero Banner
+   CAMADA 1 — Hero Banner (Neubrutalism)
    ═══════════════════════════════════════════ */
 
 .hero-banner {
@@ -8,35 +8,31 @@
   height: 100vh;
   min-height: 600px;
   overflow: hidden;
-  background: var(--color-void);
+  background: var(--bg-page);
   z-index: 1;
+  transition: background-color 0.3s ease;
 }
 
-/* ── Background gradients ── */
-.hero-banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 80% 80% at 70% 50%, #102620 0%, #000000 70%);
-  z-index: 0;
-}
-
-.hero-banner::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle 400px at 70% 50%, rgba(54,244,164,0.04) 0%, transparent 70%);
-  z-index: 1;
-}
-
-/* ── Photo ── */
+/* ── Photo Container ── */
 .hero-photo-container {
   position: absolute;
-  right: 0;
-  top: 0;
-  width: 50%;
-  height: 100%;
+  right: 8%;
+  top: 15%;
+  width: 35%;
+  height: 70%;
+  min-height: 400px;
+  max-width: 450px;
   z-index: 2;
+  border: var(--border-width) solid var(--color-border);
+  box-shadow: 8px 8px 0px 0px var(--color-border);
+  transform: rotate(2deg);
+  background-color: var(--bg-card);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.hero-photo-container:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 12px 12px 0px 0px var(--color-accent);
 }
 
 .hero-photo {
@@ -46,41 +42,28 @@
   object-position: center top;
 }
 
-/* Gradient left fade */
-.hero-photo-container::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, #000000 0%, transparent 40%);
-  z-index: 3;
-}
-
-/* Gradient bottom fade */
-.hero-photo-container::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, #000000 0%, transparent 30%);
-  z-index: 3;
-}
-
-/* ── Typewriter ── */
+/* ── Typewriter Badge ── */
 .hero-typewriter {
   position: absolute;
-  top: 40px;
+  top: 48px;
   left: 64px;
   z-index: 10;
-  font-family: var(--font-display);
-  font-size: 15.36px;
-  font-weight: 400;
-  letter-spacing: 1.54px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-black);
+  background: var(--color-neon-green);
+  border: var(--border-width-sm) solid var(--color-border);
+  padding: 8px 16px;
+  box-shadow: 3px 3px 0px 0px var(--color-border);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .hero-typewriter .cursor {
   display: inline-block;
-  color: var(--color-accent);
+  color: var(--color-black);
   animation: blink 1s step-end infinite;
   margin-left: 2px;
 }
@@ -90,28 +73,31 @@
   50% { opacity: 0; }
 }
 
-/* ── Name ── */
+/* ── Name Block ── */
 .hero-name-block {
   position: absolute;
-  bottom: 80px;
+  bottom: 12%;
   left: 64px;
   z-index: 10;
+  max-width: 50%;
 }
 
 .hero-separator {
-  width: 200px;
-  height: 1px;
+  width: 180px;
+  height: 4px;
   background: var(--color-border);
   margin-bottom: 24px;
+  transition: background-color 0.3s ease;
 }
 
 .hero-name {
   font-family: var(--font-display);
-  font-size: 96px;
-  font-weight: 330;
-  line-height: 1.00;
-  color: var(--color-white);
-  font-feature-settings: "ss03";
+  font-size: 80px;
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--color-text);
+  text-transform: uppercase;
+  transition: color 0.3s ease;
 }
 
 .hero-name span {
@@ -121,7 +107,7 @@
 /* ── Scroll Indicator ── */
 .scroll-indicator {
   position: absolute;
-  bottom: 40px;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -132,16 +118,37 @@
 }
 
 .scroll-indicator-text {
+  font-family: var(--font-body);
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #52525B;
-  font-weight: 400;
+  color: var(--color-text);
+  font-weight: 700;
+  background: var(--bg-card);
+  border: var(--border-width-sm) solid var(--color-border);
+  padding: 4px 10px;
+  box-shadow: 2px 2px 0px 0px var(--color-border);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
 }
 
 .scroll-indicator-arrow {
-  color: var(--color-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--color-aloe);
+  color: var(--color-black);
+  border: var(--border-width-sm) solid var(--color-border);
+  border-radius: 50%;
+  box-shadow: 2px 2px 0px 0px var(--color-border);
   animation: bounceDown 1.5s ease-in-out infinite;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scroll-indicator-arrow svg {
+  width: 18px;
+  height: 18px;
 }
 
 @keyframes bounceDown {
@@ -157,41 +164,68 @@
   }
 
   .hero-name-block {
-    bottom: 60px;
+    bottom: 10%;
     left: 32px;
+    max-width: 60%;
   }
 
   .hero-name {
-    font-size: 70px;
+    font-size: 60px;
+  }
+
+  .hero-photo-container {
+    right: 5%;
+    width: 32%;
+    height: 60%;
+    top: 20%;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .hero-photo-container {
-    width: 100%;
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: rotate(-1.5deg) translateY(0);
+    width: 280px;
+    height: 320px;
+    min-height: auto;
+    margin: 120px auto 40px auto;
+    box-shadow: 6px 6px 0px 0px var(--color-border);
   }
 
-  .hero-photo-container::before {
-    background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, transparent 60%);
+  .hero-photo-container:hover {
+    transform: rotate(0deg) scale(1.02);
   }
 
-  .hero-photo-container::after {
-    background: linear-gradient(to top, #000000 0%, transparent 40%);
+  .hero-banner {
+    height: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 24px 80px 24px;
   }
 
   .hero-typewriter {
-    top: 24px;
-    left: 16px;
-    font-size: 12px;
+    position: static;
+    margin-top: 40px;
+    align-self: flex-start;
   }
 
   .hero-name-block {
-    bottom: 48px;
-    left: 16px;
+    position: static;
+    max-width: 100%;
+    margin-top: 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .hero-name {
-    font-size: 48px;
+    font-size: 44px;
   }
 
   .hero-separator {
@@ -199,6 +233,9 @@
   }
 
   .scroll-indicator {
-    bottom: 16px;
+    position: static;
+    margin-top: 40px;
+    transform: none;
   }
 }
+

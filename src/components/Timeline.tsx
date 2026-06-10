@@ -18,7 +18,7 @@ const experiences: Experience[] = [
     stack: 'Golang & Flutter Web',
     company: 'VIVA PLUS',
     period: 'Fev 2026 – Abr 2026',
-    type: 'Freelancer',
+    type: 'Contrato Intermitente',
     location: 'Brazil',
     bullets: [
       'Desenvolvimento completo da Viva+, startup de gestão imobiliária participante da 2ª edição da FAPESC.',
@@ -31,7 +31,7 @@ const experiences: Experience[] = [
     stack: 'Flutter — Android & iOS',
     company: 'MHEADS SISTEMAS',
     period: 'Nov 2025 – Fev 2026',
-    type: 'Freelancer',
+    type: 'Contrato Intermitente',
     location: 'Brazil',
     bullets: [
       'Cluster Dash — painel gerencial com dashboards interativos (fl_chart), autenticação JWT + reCAPTCHA v3.',

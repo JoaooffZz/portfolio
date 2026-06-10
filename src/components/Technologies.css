@@ -1,26 +1,29 @@
 /* ═══════════════════════════════════════════
-   CAMADA 2 — Technologies (Carousels)
+   CAMADA 2 — Technologies (Neubrutalism)
    ═══════════════════════════════════════════ */
 
 .tech-section {
   position: relative;
-  background: var(--color-dark-forest);
+  background: var(--bg-page);
   padding: 80px 0;
   z-index: 2;
-  border-top: 1px solid var(--color-border);
+  border-top: var(--border-width) solid var(--color-border);
+  border-bottom: var(--border-width) solid var(--color-border);
   overflow: hidden;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* ── Category label ── */
 .tech-label {
   font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 2.4px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--color-accent);
-  margin-bottom: 24px;
+  color: var(--color-text);
+  margin-bottom: 28px;
   padding-left: 64px;
+  transition: color 0.3s ease;
 }
 
 /* ── Carousel container ── */
@@ -28,8 +31,9 @@
   overflow: hidden;
   width: 100%;
   margin-bottom: 48px;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  /* Mask to fade edges nicely */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 
 .carousel-wrapper:last-child {
@@ -38,8 +42,9 @@
 
 .carousel-track {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   width: max-content;
+  padding: 10px 0; /* Add padding so shadows aren't clipped */
   animation: scrollCarousel 30s linear infinite;
 }
 
@@ -69,66 +74,108 @@
 .tech-badge {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--color-border);
-  border-radius: 9999px;
-  padding: 8px 20px;
+  gap: 10px;
+  border: var(--border-width-sm) solid var(--color-border);
+  border-radius: 4px;
+  padding: 10px 20px;
   white-space: nowrap;
-  transition: background 200ms ease, border-color 200ms ease;
   cursor: default;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Alternate colors based on index for variety */
+.tech-badge:nth-child(4n+1) {
+  --badge-accent: var(--color-neon-green);
+}
+.tech-badge:nth-child(4n+2) {
+  --badge-accent: var(--color-aloe);
+}
+.tech-badge:nth-child(4n+3) {
+  --badge-accent: var(--color-pistachio);
+}
+.tech-badge:nth-child(4n+4) {
+  --badge-accent: var(--color-white);
+}
+
+/* Dark theme style: Dark background, light border, neon shadow */
+[data-theme="dark"] .tech-badge {
+  background: var(--bg-card);
+  color: var(--color-white);
+  box-shadow: 4px 4px 0px 0px var(--badge-accent);
+}
+
+/* Light theme style: Neon background, dark border, black shadow */
+[data-theme="light"] .tech-badge {
+  background: var(--badge-accent);
+  color: var(--color-black);
+  box-shadow: 4px 4px 0px 0px var(--color-black);
 }
 
 .tech-badge:hover {
-  background: rgba(54, 244, 164, 0.08);
-  border-color: rgba(54, 244, 164, 0.3);
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px 0px var(--color-border) !important;
 }
 
 .tech-badge-dot {
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: var(--color-accent);
   flex-shrink: 0;
 }
 
+[data-theme="dark"] .tech-badge-dot {
+  background: var(--badge-accent);
+}
+
+[data-theme="light"] .tech-badge-dot {
+  background: var(--color-black);
+}
+
 .tech-badge-icon {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
   flex-shrink: 0;
   display: block;
 }
 
 .tech-badge-text {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-white);
-  letter-spacing: 0.28px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 /* ═══ Responsive ═══ */
 @media (max-width: 1024px) {
   .tech-label {
     padding-left: 32px;
+    font-size: 16px;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .tech-section {
-    padding: 48px 0;
+    padding: 60px 0;
   }
 
   .tech-label {
-    padding-left: 16px;
-    font-size: 11px;
+    padding-left: 24px;
+    font-size: 14px;
+    margin-bottom: 20px;
   }
 
   .carousel-track {
     animation-duration: 40s !important;
+    gap: 12px;
   }
 
   .carousel-track.reverse {
     animation-duration: 35s !important;
   }
+
+  .tech-badge {
+    padding: 8px 16px;
+  }
 }
+
