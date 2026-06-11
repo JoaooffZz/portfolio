@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import './Libraries.css';
 import oltgoLogo from '../assets/logo-oltgo.png';
+import relayLogo from '../assets/logo-relay.png';
 
 interface Library {
   name: string;
@@ -26,6 +27,20 @@ const libraries: Library[] = [
       'Propagação Automática de contexto (context.Context) para eventos hierárquicos.',
       'Arquitetura modular de Agente único (1 Serviço -> 1 Agente) para controle do ciclo de vida.',
       'Coleta Thread-Safe em memória unificada sob um schema estruturado JSON.',
+    ],
+  },
+  {
+    name: 'Relay',
+    language: 'Flutter',
+    description: 'Uma biblioteca de fila de tarefas (Job Queue) offline-first de alta performance desenvolvida para Dart e Flutter. Ela garante que ações assíncronas em segundo plano sejam executadas com total confiabilidade, mesmo quando o dispositivo estiver sem conexão com a internet.',
+    logo: relayLogo,
+    githubUrl: 'https://github.com/JoaooffZz/relay',
+    tags: ['Offline-First', 'Job Queue', 'Dart & Flutter', 'Resiliência', 'SQLite / Drift', 'Background Jobs'],
+    features: [
+      'Conexão Inteligente com monitoramento automático do estado da rede para pausar ou retomar a fila.',
+      'Retry com Backoff automático suportando estratégias Fixa, Linear ou Exponencial.',
+      'Controle reativo com Streams de eventos em tempo real para acompanhar o ciclo de vida das tarefas.',
+      'Persistência robusta com Drift/SQLite para recuperação e execução contínua pós-reinicializações.',
     ],
   },
 ];
