@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import bannerImg from '../assets/banner.png';
+import { useLanguage } from '../hooks/useLanguage';
 import './HeroBanner.css';
 
 function Typewriter({ text, delay = 600, speed = 80 }: { text: string; delay?: number; speed?: number }) {
@@ -31,6 +32,8 @@ function Typewriter({ text, delay = 600, speed = 80 }: { text: string; delay?: n
 }
 
 export default function HeroBanner() {
+  const { t, language } = useLanguage();
+
   return (
     <section className="hero-banner" id="hero">
       {/* Photo */}
@@ -45,7 +48,7 @@ export default function HeroBanner() {
 
       {/* Typewriter */}
       <div className="hero-typewriter">
-        <Typewriter text="Engenheiro de Software" />
+        <Typewriter key={language} text={t.hero.role} />
       </div>
 
       {/* Name */}
@@ -68,7 +71,7 @@ export default function HeroBanner() {
 
       {/* Scroll indicator */}
       <div className="scroll-indicator">
-        <span className="scroll-indicator-text">scroll</span>
+        <span className="scroll-indicator-text">{t.hero.scroll}</span>
         <div className="scroll-indicator-arrow">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 5v14M19 12l-7 7-7-7" />

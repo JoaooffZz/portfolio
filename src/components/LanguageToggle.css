@@ -1,8 +1,8 @@
 /* ═══════════════════════════════════════════
-   Theme Toggle Button — Neubrutalism style
+   Language Toggle Button — Neubrutalism style
    ═══════════════════════════════════════════ */
 
-.theme-toggle-btn {
+.lang-toggle-btn {
   width: 48px;
   height: 48px;
   display: flex;
@@ -20,44 +20,48 @@
   transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.3s ease;
 }
 
-[data-theme="light"] .theme-toggle-btn {
-  background: var(--color-neon-green);
-}
-
-[data-theme="dark"] .theme-toggle-btn {
+[data-theme="light"] .lang-toggle-btn {
   background: var(--color-aloe);
 }
 
-.theme-toggle-btn:hover {
+[data-theme="dark"] .lang-toggle-btn {
+  background: var(--color-forest);
+}
+
+.lang-toggle-btn:hover {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0px 0px var(--color-border);
 }
 
-.theme-toggle-btn:active {
+.lang-toggle-btn:active {
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0px 0px var(--color-border);
 }
 
-.toggle-icon {
-  width: 22px;
-  height: 22px;
-  color: var(--color-border);
-  transition: transform 0.3s ease;
+.lang-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--color-text);
+  transition: color 0.3s ease;
 }
 
-.theme-toggle-btn:hover .toggle-icon {
-  transform: rotate(15deg);
+[data-theme="dark"] .lang-text {
+  color: var(--color-neon-green);
+}
+
+[data-theme="light"] .lang-text {
+  color: var(--color-black);
 }
 
 /* Responsividade */
 @media (max-width: 640px) {
-  .theme-toggle-btn {
+  .lang-toggle-btn {
     width: 42px;
     height: 42px;
   }
 
-  .toggle-icon {
-    width: 18px;
-    height: 18px;
+  .lang-text {
+    font-size: 14px;
   }
 }

@@ -1,3 +1,4 @@
+import { useLanguage } from '../hooks/useLanguage';
 import './Technologies.css';
 
 import flutterIcon from '../assets/Flutter_logo.svg';
@@ -81,12 +82,14 @@ function CarouselTrack({ items, reverse = false }: { items: TechItem[]; reverse?
 }
 
 export default function Technologies() {
+  const { t } = useLanguage();
+
   return (
     <section className="tech-section" id="technologies">
-      <div className="tech-label">Mobile &amp; Frontend</div>
+      <div className="tech-label">{t.tech.mobileFrontend}</div>
       <CarouselTrack items={mobileFrontend} />
 
-      <div className="tech-label">Backend &amp; DevOps</div>
+      <div className="tech-label">{t.tech.backendDevops}</div>
       <CarouselTrack items={backendDevops} reverse />
     </section>
   );

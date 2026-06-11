@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { useLanguage } from '../hooks/useLanguage';
 import './Timeline.css';
 
 interface Experience {
@@ -11,35 +12,6 @@ interface Experience {
   location: string;
   bullets: string[];
 }
-
-const experiences: Experience[] = [
-  {
-    role: 'Developer Full Stack',
-    stack: 'Golang & Flutter Web',
-    company: 'VIVA PLUS',
-    period: 'Fev 2026 – Abr 2026',
-    type: 'Contrato Intermitente',
-    location: 'Brazil',
-    bullets: [
-      'Desenvolvimento completo da Viva+, startup de gestão imobiliária participante da 2ª edição da FAPESC.',
-      'Back-end em Go + Gin com Arquitetura Monolítica Modular e padrão Port/Adapter, deploy serverless na GCP com Cloud Run.',
-      'Front-end com Flutter/Dart em Arquitetura Limpa, integração Firebase Auth + Firestore e deploy via Firebase Hosting.',
-    ],
-  },
-  {
-    role: 'Developer Mobile',
-    stack: 'Flutter — Android & iOS',
-    company: 'MHEADS SISTEMAS',
-    period: 'Nov 2025 – Fev 2026',
-    type: 'Contrato Intermitente',
-    location: 'Brazil',
-    bullets: [
-      'Cluster Dash — painel gerencial com dashboards interativos (fl_chart), autenticação JWT + reCAPTCHA v3.',
-      'Cluster Coletor — app logístico com leitura de códigos de barras (mobile_scanner) e suporte a hardware industrial.',
-      'Arquitetura em camadas com separação clara de responsabilidades em ambos os projetos.',
-    ],
-  },
-];
 
 function TimelineCard({ exp, side, index }: { exp: Experience; side: 'left' | 'right'; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -100,6 +72,7 @@ function TimelineCard({ exp, side, index }: { exp: Experience; side: 'left' | 'r
 }
 
 export default function Timeline() {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -108,10 +81,31 @@ export default function Timeline() {
 
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
+  const experiences: Experience[] = [
+    {
+      role: t.timeline.roleVivaPlus,
+      stack: 'Golang & Flutter Web',
+      company: 'VIVA PLUS',
+      period: t.timeline.periodVivaPlus,
+      type: t.timeline.typeIntermittent,
+      location: t.timeline.locBrazil,
+      bullets: t.timeline.bulletsVivaPlus,
+    },
+    {
+      role: t.timeline.roleMheads,
+      stack: 'Flutter — Android & iOS',
+      company: 'MHEADS SISTEMAS',
+      period: t.timeline.periodMheads,
+      type: t.timeline.typeIntermittent,
+      location: t.timeline.locBrazil,
+      bullets: t.timeline.bulletsMheads,
+    },
+  ];
+
   return (
     <section className="timeline-section" id="experience" ref={sectionRef}>
       <div className="timeline-header">
-        <div className="timeline-title">Experiência Profissional</div>
+        <div className="timeline-title">{t.timeline.title}</div>
         <div className="timeline-title-line" />
       </div>
 

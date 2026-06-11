@@ -1,8 +1,10 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useLanguage } from '../hooks/useLanguage';
 import './Contact.css';
 
 export default function Contact() {
+  const { t } = useLanguage();
   const titleRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(titleRef, { once: true, margin: '-100px' });
 
@@ -17,7 +19,7 @@ export default function Contact() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          Vamos trabalhar juntos?
+          {t.contact.title}
         </motion.h2>
 
         {/* Card */}
@@ -36,13 +38,13 @@ export default function Contact() {
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z" />
                 <circle cx="12" cy="10" r="3" />
               </svg>
-              Teresina, Piauí — BR
+              {t.contact.location}
             </div>
           </div>
 
           <div className="contact-buttons">
             <a href="mailto:joaooffzz.dev@gmail.com" className="btn-primary">
-              Enviar mensagem
+              {t.contact.buttonText}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17L17 7M17 7H7M17 7v10" />
               </svg>
@@ -75,7 +77,7 @@ export default function Contact() {
 
         {/* Footer */}
         <p className="footer-text">
-          João Paulo Soares Martins · Engenheiro de Software · 2025
+          {t.contact.footerText}
         </p>
       </div>
     </section>

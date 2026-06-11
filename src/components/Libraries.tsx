@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import './Libraries.css';
 import oltgoLogo from '../assets/logo-oltgo.png';
 import relayLogo from '../assets/logo-relay.png';
+import { useLanguage } from '../hooks/useLanguage';
 
 interface Library {
   name: string;
@@ -14,45 +15,36 @@ interface Library {
   features: string[];
 }
 
-const libraries: Library[] = [
-  {
-    name: 'Oltgo',
-    language: 'Go',
-    description: 'Uma biblioteca de telemetria e observabilidade concorrente, leve e de alta performance desenvolvida em Go. Ela permite capturar, estruturar e rastrear logs e transações de forma assíncrona, eliminando gargalos de I/O na aplicação principal.',
-    logo: oltgoLogo,
-    githubUrl: 'https://github.com/JoaooffZz/oltgo',
-    tags: ['Observabilidade', 'Telemetria', 'Concorrência', 'Logger', 'Tracing', 'OpenTelemetry'],
-    features: [
-      'Design Assíncrono baseada em Go Channels para consumo sem bloqueios de I/O.',
-      'Propagação Automática de contexto (context.Context) para eventos hierárquicos.',
-      'Arquitetura modular de Agente único (1 Serviço -> 1 Agente) para controle do ciclo de vida.',
-      'Coleta Thread-Safe em memória unificada sob um schema estruturado JSON.',
-    ],
-  },
-  {
-    name: 'Relay',
-    language: 'Flutter',
-    description: 'Uma biblioteca de fila de tarefas (Job Queue) offline-first de alta performance desenvolvida para Dart e Flutter. Ela garante que ações assíncronas em segundo plano sejam executadas com total confiabilidade, mesmo quando o dispositivo estiver sem conexão com a internet.',
-    logo: relayLogo,
-    githubUrl: 'https://github.com/JoaooffZz/relay',
-    tags: ['Offline-First', 'Job Queue', 'Dart & Flutter', 'Resiliência', 'SQLite / Drift', 'Background Jobs'],
-    features: [
-      'Conexão Inteligente com monitoramento automático do estado da rede para pausar ou retomar a fila.',
-      'Retry com Backoff automático suportando estratégias Fixa, Linear ou Exponencial.',
-      'Controle reativo com Streams de eventos em tempo real para acompanhar o ciclo de vida das tarefas.',
-      'Persistência robusta com Drift/SQLite para recuperação e execução contínua pós-reinicializações.',
-    ],
-  },
-];
-
 export default function Libraries() {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+
+  const libraries: Library[] = [
+    {
+      name: 'Oltgo',
+      language: 'Go',
+      description: t.libraries.oltgoDescription,
+      logo: oltgoLogo,
+      githubUrl: 'https://github.com/JoaooffZz/oltgo',
+      tags: ['Observabilidade', 'Telemetria', 'Concorrência', 'Logger', 'Tracing', 'OpenTelemetry'],
+      features: t.libraries.oltgoFeatures,
+    },
+    {
+      name: 'Relay',
+      language: 'Flutter',
+      description: t.libraries.relayDescription,
+      logo: relayLogo,
+      githubUrl: 'https://github.com/JoaooffZz/relay',
+      tags: ['Offline-First', 'Job Queue', 'Dart & Flutter', 'Resiliência', 'SQLite / Drift', 'Background Jobs'],
+      features: t.libraries.relayFeatures,
+    },
+  ];
 
   return (
     <section className="libraries-section" id="libraries" ref={sectionRef}>
       <div className="libraries-header">
-        <div className="libraries-title">Bibliotecas de Autoria Própria</div>
+        <div className="libraries-title">{t.libraries.title}</div>
         <div className="libraries-title-line" />
       </div>
 
@@ -91,7 +83,7 @@ export default function Libraries() {
               <p className="library-description">{lib.description}</p>
 
               <div className="library-features-section">
-                <h4 className="library-features-title">Destaques da Arquitetura:</h4>
+                <h4 className="library-features-title">{t.libraries.featuresTitle}</h4>
                 <ul className="library-features-list">
                   {lib.features.map((feature, idx) => (
                     <li key={idx} className="library-feature-item">
@@ -108,7 +100,7 @@ export default function Libraries() {
                   rel="noopener noreferrer"
                   className="btn-github-neubrutal"
                 >
-                  <span>Ver no GitHub</span>
+                  <span>{t.libraries.viewOnGithub}</span>
                   <svg
                     width="18"
                     height="18"
