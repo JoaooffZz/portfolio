@@ -21,6 +21,8 @@ interface TranslationKeys {
     oltgoFeatures: string[];
     relayDescription: string;
     relayFeatures: string[];
+    sessionAuthAutoDescription: string;
+    sessionAuthAutoFeatures: string[];
   };
   timeline: {
     title: string;
@@ -68,6 +70,13 @@ const translations: Record<Language, TranslationKeys> = {
         'Retry com Backoff automático suportando estratégias Fixa, Linear ou Exponencial.',
         'Controle reativo com Streams de eventos em tempo real para acompanhar o ciclo de vida das tarefas.',
         'Persistência robusta com Drift/SQLite para recuperação e execução contínua pós-reinicializações.',
+      ],
+      sessionAuthAutoDescription: 'Uma biblioteca Flutter de alta performance projetada para gerenciar sessões autenticadas e tokens de acesso de forma transparente e automatizada. Ela elimina o boilerplate de controle de expiração, integrando banco Drift/SQLite local e armazenamento seguro de credenciais via Keychain/Keystore.',
+      sessionAuthAutoFeatures: [
+        'Segurança em Duas Camadas: credenciais no cofre seguro e tokens/metadados com banco SQLite local (Drift).',
+        'Renovação Reativa Transparente: validação e refresh silencioso de tokens antes de expirar em chamadas HTTP.',
+        'Login de Recuperação (Fallback): reautenticação automática utilizando credenciais salvas se o refresh falhar.',
+        'Auditoria Completa: tabela dedicada de histórico de logs locais de autenticação e tentativas no SQLite.',
       ],
     },
     timeline: {
@@ -122,6 +131,13 @@ const translations: Record<Language, TranslationKeys> = {
         'Automatic retry with backoff supporting Fixed, Linear, or Exponential strategies.',
         'Reactive control with real-time event streams to track the job lifecycle.',
         'Robust persistence with Drift/SQLite for recovery and continuous execution after restarts.',
+      ],
+      sessionAuthAutoDescription: 'A high-performance Flutter library designed to manage authenticated sessions and access tokens transparently and automatically. It eliminates the boilerplate of expiration control, integrating a local Drift/SQLite database and secure credential storage via Keychain/Keystore.',
+      sessionAuthAutoFeatures: [
+        'Two-Layer Security: sensitive credentials in secure storage and tokens/metadata with a local SQLite database (Drift).',
+        'Transparent Reactive Renewal: silent validation and refresh of tokens before they expire when calling HTTP clients.',
+        'Recovery Login (Fallback): automatic re-authentication using saved credentials if the refresh token fails.',
+        'Full Audit Log: dedicated table for local authentication logs and attempts in SQLite.',
       ],
     },
     timeline: {

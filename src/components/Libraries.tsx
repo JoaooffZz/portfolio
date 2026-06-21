@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import './Libraries.css';
 import oltgoLogo from '../assets/logo-oltgo.png';
 import relayLogo from '../assets/logo-relay.png';
+import sessionAuthLogo from '../assets/logo-session-auth.png';
 import { useLanguage } from '../hooks/useLanguage';
 
 interface Library {
@@ -38,6 +39,15 @@ export default function Libraries() {
       githubUrl: 'https://github.com/JoaooffZz/relay',
       tags: ['Offline-First', 'Job Queue', 'Dart & Flutter', 'Resiliência', 'SQLite / Drift', 'Background Jobs'],
       features: t.libraries.relayFeatures,
+    },
+    {
+      name: 'Session Auth Auto',
+      language: 'Flutter',
+      description: t.libraries.sessionAuthAutoDescription,
+      logo: sessionAuthLogo,
+      githubUrl: 'https://github.com/JoaooffZz/session_auth_auto',
+      tags: ['Session Manager', 'Keychain & Keystore', 'Dart & Flutter', 'Token Auto-Refresh', 'Secure Storage', 'SQLite / Drift'],
+      features: t.libraries.sessionAuthAutoFeatures,
     },
   ];
 
