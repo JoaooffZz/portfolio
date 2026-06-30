@@ -4,6 +4,7 @@ import './Libraries.css';
 import oltgoLogo from '../assets/logo-oltgo.png';
 import relayLogo from '../assets/logo-relay.png';
 import sessionAuthLogo from '../assets/logo-session-auth.png';
+import otphiveLogo from '../assets/logo-otphive.png';
 import { useLanguage } from '../hooks/useLanguage';
 
 interface Library {
@@ -28,7 +29,7 @@ export default function Libraries() {
       description: t.libraries.oltgoDescription,
       logo: oltgoLogo,
       githubUrl: 'https://github.com/JoaooffZz/oltgo',
-      tags: ['Observabilidade', 'Telemetria', 'Concorrência', 'Logger', 'Tracing', 'OpenTelemetry'],
+      tags: t.libraries.oltgoTags,
       features: t.libraries.oltgoFeatures,
     },
     {
@@ -37,7 +38,7 @@ export default function Libraries() {
       description: t.libraries.relayDescription,
       logo: relayLogo,
       githubUrl: 'https://github.com/JoaooffZz/relay',
-      tags: ['Offline-First', 'Job Queue', 'Dart & Flutter', 'Resiliência', 'SQLite / Drift', 'Background Jobs'],
+      tags: t.libraries.relayTags,
       features: t.libraries.relayFeatures,
     },
     {
@@ -46,8 +47,17 @@ export default function Libraries() {
       description: t.libraries.sessionAuthAutoDescription,
       logo: sessionAuthLogo,
       githubUrl: 'https://github.com/JoaooffZz/session_auth_auto',
-      tags: ['Session Manager', 'Keychain & Keystore', 'Dart & Flutter', 'Token Auto-Refresh', 'Secure Storage', 'SQLite / Drift'],
+      tags: t.libraries.sessionAuthAutoTags,
       features: t.libraries.sessionAuthAutoFeatures,
+    },
+    {
+      name: 'OTPHive',
+      language: 'Go',
+      description: t.libraries.otphiveDescription,
+      logo: otphiveLogo,
+      githubUrl: 'https://github.com/JoaooffZz/otphive',
+      tags: t.libraries.otphiveTags,
+      features: t.libraries.otphiveFeatures,
     },
   ];
 
