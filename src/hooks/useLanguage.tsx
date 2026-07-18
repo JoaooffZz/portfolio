@@ -29,15 +29,22 @@ interface TranslationKeys {
     otphiveDescription: string;
     otphiveFeatures: string[];
     otphiveTags: string[];
+    permguardDescription: string;
+    permguardFeatures: string[];
+    permguardTags: string[];
   };
   timeline: {
     title: string;
+    roleToq: string;
     roleVivaPlus: string;
     roleMheads: string;
     typeIntermittent: string;
+    typeFullTime: string;
     locBrazil: string;
+    periodToq: string;
     periodVivaPlus: string;
     periodMheads: string;
+    bulletsToq: string[];
     bulletsVivaPlus: string[];
     bulletsMheads: string[];
   };
@@ -95,15 +102,31 @@ const translations: Record<Language, TranslationKeys> = {
         'Ultra Performance: Throughput superior a 2.0 milhões de operações por segundo em benchmarks (M2).',
       ],
       otphiveTags: ['2FA / MFA', 'Redis / Memcached', 'Alta Performance', 'Segurança', 'Concorrência', 'Sharded Map'],
+      permguardDescription: 'Uma biblioteca Go leve e concorrente para autorização por permissões em serviços HTTP, com notação hierárquica por ponto (um prefixo implica todas as suas sub-permissões). Independente de framework, funciona em net/http, chi, Echo e Gin (via adapter), com dois modos de execução para single e multi-instância.',
+      permguardFeatures: [
+        'Matching Hierárquico com notação por ponto e caminho rápido O(1) via map para checagem de permissões.',
+        'Modo Single com Sharded Map em memória (256 shards) para alta concorrência sem lock global.',
+        'Modo Multi com Redis Sets e escrita atômica via TxPipeline (DEL + SADD + EXPIRE) para escala horizontal.',
+        'Independente de framework: middleware nativo RequireAll/RequireAny, TTL configurável e revogação em tempo real.',
+      ],
+      permguardTags: ['Autorização', 'RBAC', 'Redis', 'net/http', 'Concorrência', 'Middleware'],
     },
     timeline: {
       title: 'Experiência Profissional',
+      roleToq: 'Developer Backend Go',
       roleVivaPlus: 'Developer Full Stack',
       roleMheads: 'Developer Mobile',
       typeIntermittent: 'Contrato Intermitente',
+      typeFullTime: 'Tempo Integral',
       locBrazil: 'Brazil',
+      periodToq: 'Mai 2026 – Jul 2026',
       periodVivaPlus: 'Fev 2026 – Abr 2026',
       periodMheads: 'Nov 2025 – Fev 2026',
+      bulletsToq: [
+        'Back-end da TOQ, plataforma imobiliária que conecta corretores e clientes, em Go + Gin com Arquitetura Hexagonal (Ports & Adapters).',
+        'Infraestrutura na AWS (EC2, MySQL/RDS, S3, SES, SSM) com Redis para cache e sessões, e integração do gateway de pagamentos Asaas.',
+        'Autenticação JWT + OTP, pipeline de processamento de mídia e observabilidade end-to-end com OpenTelemetry (logs, métricas e traces) e Swagger.',
+      ],
       bulletsVivaPlus: [
         'Desenvolvimento completo da Viva+, startup de gestão imobiliária participante da 2ª edição da FAPESC.',
         'Back-end em Go + Gin com Arquitetura Monolítica Modular e padrão Port/Adapter, deploy serverless na GCP com Cloud Run.',
@@ -167,15 +190,31 @@ const translations: Record<Language, TranslationKeys> = {
         'Ultra Performance: Throughput exceeding 2.0 million operations per second in benchmarks (M2).',
       ],
       otphiveTags: ['2FA / MFA', 'Redis / Memcached', 'High Performance', 'Security', 'Concurrency', 'Sharded Map'],
+      permguardDescription: 'A lightweight and concurrent Go library for permission-based authorization in HTTP services, using hierarchical dot notation (a prefix implies all of its sub-permissions). Framework-agnostic, it works with net/http, chi, Echo, and Gin (via adapter), with two execution modes for single and multi-instance setups.',
+      permguardFeatures: [
+        'Hierarchical matching with dot notation and an O(1) fast path via map for permission checks.',
+        'Single mode with an in-memory Sharded Map (256 shards) for high concurrency without a global lock.',
+        'Multi mode with Redis Sets and atomic writes via TxPipeline (DEL + SADD + EXPIRE) for horizontal scaling.',
+        'Framework-agnostic: native RequireAll/RequireAny middleware, configurable TTL, and real-time revocation.',
+      ],
+      permguardTags: ['Authorization', 'RBAC', 'Redis', 'net/http', 'Concurrency', 'Middleware'],
     },
     timeline: {
       title: 'Professional Experience',
+      roleToq: 'Backend Go Developer',
       roleVivaPlus: 'Full Stack Developer',
       roleMheads: 'Mobile Developer',
       typeIntermittent: 'Contractor',
+      typeFullTime: 'Full-Time',
       locBrazil: 'Brazil',
+      periodToq: 'May 2026 – Jul 2026',
       periodVivaPlus: 'Feb 2026 – Apr 2026',
       periodMheads: 'Nov 2025 – Feb 2026',
+      bulletsToq: [
+        'Back-end for TOQ, a real estate platform connecting brokers and clients, in Go + Gin with Hexagonal Architecture (Ports & Adapters).',
+        'Infrastructure on AWS (EC2, MySQL/RDS, S3, SES, SSM) with Redis for caching and sessions, and Asaas payment gateway integration.',
+        'JWT + OTP authentication, a media processing pipeline, and end-to-end observability with OpenTelemetry (logs, metrics, traces) and Swagger.',
+      ],
       bulletsVivaPlus: [
         'Full development of Viva+, a real estate management startup participating in the 2nd edition of FAPESC.',
         'Back-end in Go + Gin with Modular Monolithic Architecture and Port/Adapter pattern, serverless deployment on GCP with Cloud Run.',

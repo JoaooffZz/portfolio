@@ -5,6 +5,7 @@ import oltgoLogo from '../assets/logo-oltgo.png';
 import relayLogo from '../assets/logo-relay.png';
 import sessionAuthLogo from '../assets/logo-session-auth.png';
 import otphiveLogo from '../assets/logo-otphive.png';
+import permguardLogo from '../assets/logo-permguard.png';
 import { useLanguage } from '../hooks/useLanguage';
 
 interface Library {
@@ -23,6 +24,15 @@ export default function Libraries() {
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
   const libraries: Library[] = [
+    {
+      name: 'PermGuard',
+      language: 'Go',
+      description: t.libraries.permguardDescription,
+      logo: permguardLogo,
+      githubUrl: 'https://github.com/JoaooffZz/permguard',
+      tags: t.libraries.permguardTags,
+      features: t.libraries.permguardFeatures,
+    },
     {
       name: 'Oltgo',
       language: 'Go',

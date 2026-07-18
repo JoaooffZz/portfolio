@@ -83,6 +83,15 @@ export default function Timeline() {
 
   const experiences: Experience[] = [
     {
+      role: t.timeline.roleToq,
+      stack: 'Golang & AWS',
+      company: 'TOQ',
+      period: t.timeline.periodToq,
+      type: t.timeline.typeFullTime,
+      location: t.timeline.locBrazil,
+      bullets: t.timeline.bulletsToq,
+    },
+    {
       role: t.timeline.roleVivaPlus,
       stack: 'Golang & Flutter Web',
       company: 'VIVA PLUS',
