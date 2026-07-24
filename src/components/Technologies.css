@@ -40,12 +40,30 @@
   margin-bottom: 0;
 }
 
+/*
+ * The track holds N identical copies of the list end to end. Shifting it by
+ * exactly one copy (plus the gap that follows it) lands on visually identical
+ * content, so the loop is seamless.
+ *
+ * --marquee-shift and --marquee-duration are both measured and set inline by
+ * CarouselTrack — see the comment there for why the copy count and the shift
+ * cannot be hardcoded. The fallbacks here only matter for the first paint,
+ * before the ResizeObserver has measured.
+ */
 .carousel-track {
   display: flex;
   gap: 16px;
   width: max-content;
   padding: 10px 0; /* Add padding so shadows aren't clipped */
-  animation: scrollCarousel 30s linear infinite;
+  animation: scrollCarousel var(--marquee-duration, 30s) linear infinite;
+}
+
+/* One repetition of the list. Its own gap matches the track's, so the seam
+   between copies is indistinguishable from the gaps within one. */
+.carousel-copy {
+  display: flex;
+  gap: 16px;
+  flex: 0 0 auto;
 }
 
 .carousel-track:hover {
@@ -53,7 +71,7 @@
 }
 
 .carousel-track.reverse {
-  animation: scrollCarouselReverse 25s linear infinite;
+  animation: scrollCarouselReverse var(--marquee-duration, 30s) linear infinite;
 }
 
 .carousel-track.reverse:hover {
@@ -62,11 +80,11 @@
 
 @keyframes scrollCarousel {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(var(--marquee-shift, -50%)); }
 }
 
 @keyframes scrollCarouselReverse {
-  0% { transform: translateX(-50%); }
+  0% { transform: translateX(var(--marquee-shift, -50%)); }
   100% { transform: translateX(0); }
 }
 

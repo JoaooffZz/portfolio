@@ -1,0 +1,33 @@
+/* ═══════════════════════════════════════════
+   Hero 3D canvas host
+   ═══════════════════════════════════════════ */
+
+/*
+ * Full-bleed across the hero rather than confined to the photo card's box.
+ *
+ * A sized container cropped the laptop — the lid and its cast shadow need more
+ * room than the card occupies, and clipping a 3D object at a rectangular CSS
+ * edge reads as a bug. The model is offset to the right inside the scene
+ * instead, so it sits where the card used to without any box to run into.
+ */
+.hero-canvas-host {
+  position: absolute;
+  inset: 0;
+  /* Below the hero copy (z-index 10) but above the section background. */
+  z-index: 1;
+  /*
+   * The canvas sits under the headline and the scroll indicator, so it would
+   * never see a pointermove while the cursor was over them. Pointer tracking is
+   * handled by a listener on the hero section instead — see HeroCanvas.tsx —
+   * which also keeps the text selectable and the links clickable.
+   */
+  pointer-events: none;
+}
+
+.hero-canvas-host canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Mobile renders the photo fallback instead, so nothing to size here. */

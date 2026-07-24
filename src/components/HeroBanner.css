@@ -35,6 +35,17 @@
   box-shadow: 12px 12px 0px 0px var(--color-accent);
 }
 
+/*
+ * Tilt takes over transform and box-shadow frame-by-frame — the CSS transition
+ * on those properties would re-ease every spring tick and smear the motion.
+ * The photo inside is over-scaled and drifts, so the frame must clip it.
+ */
+.hero-photo-container--tilt {
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  will-change: transform;
+  overflow: hidden;
+}
+
 .hero-photo {
   width: 100%;
   height: 100%;
@@ -82,12 +93,14 @@
   max-width: 50%;
 }
 
+/* Rendered as an <svg> by <DrawLine> — colour lives on the stroke, not a
+   background, so the draw animation has something to reveal. */
 .hero-separator {
+  display: block;
   width: 180px;
   height: 4px;
-  background: var(--color-border);
   margin-bottom: 24px;
-  transition: background-color 0.3s ease;
+  overflow: visible;
 }
 
 .hero-name {
@@ -224,8 +237,11 @@
     align-items: center;
   }
 
+  /* 38px rather than 44px: "MARTINS" at 44px sat within a pixel or two of the
+     available width, and the per-glyph rounding the split reveal introduces was
+     enough to tip it over. The headroom keeps the longest word on one line. */
   .hero-name {
-    font-size: 44px;
+    font-size: 38px;
   }
 
   .hero-separator {

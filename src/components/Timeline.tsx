@@ -1,6 +1,8 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '../hooks/useLanguage';
+import { useMotionPrefs } from '../hooks/useMotionPrefs';
+import { RevealText, DrawLine } from './RevealText';
 import './Timeline.css';
 
 interface Experience {
@@ -13,27 +15,59 @@ interface Experience {
   bullets: string[];
 }
 
-function TimelineCard({ exp, side, index }: { exp: Experience; side: 'left' | 'right'; index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, margin: '-100px' });
+/**
+ * Entrance travel as a share of the card's own width, and a shorter throw for
+ * the stacked narrow layout. See the matching constants in Libraries.tsx.
+ */
+const SLIDE_DISTANCE = 55;
+const SLIDE_DISTANCE_SMALL = 24;
 
-  const xOffset = side === 'left' ? -30 : 30;
+function TimelineCard({ exp, side }: { exp: Experience; side: 'left' | 'right' }) {
+  const { allowParallax, isSmallScreen } = useMotionPrefs();
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  /*
+   * Scroll-linked entrance, matching the libraries. Here the direction is not
+   * alternated arbitrarily — each card enters from the side of the spine it
+   * already sits on, so the movement reinforces the timeline's zig-zag instead of
+   * fighting it.
+   *
+   * Replaces the previous one-shot `useInView` transition so the motion tracks
+   * the scroll position and reverses when scrolling back up.
+   */
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ['start end', 'center center'],
+  });
+
+  const direction = side === 'left' ? -1 : 1;
+  const travel = isSmallScreen ? SLIDE_DISTANCE_SMALL : SLIDE_DISTANCE;
+
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1],
+    allowParallax ? [`${direction * travel}%`, '0%'] : ['0%', '0%'],
+  );
+  const opacity = useTransform(scrollYProgress, [0, 0.55], allowParallax ? [0, 1] : [1, 1]);
+  const rotate = useTransform(
+    scrollYProgress,
+    [0, 1],
+    allowParallax ? [direction * 2, 0] : [0, 0],
+  );
+  // The node pops in as its card arrives rather than on a fixed delay.
+  const nodeScale = useTransform(scrollYProgress, [0.25, 0.8], allowParallax ? [0, 1] : [1, 1]);
+  const connectorOpacity = useTransform(
+    scrollYProgress,
+    [0.15, 0.7],
+    allowParallax ? [0, 1] : [1, 1],
+  );
 
   return (
     <div className={`timeline-item ${side}`} ref={cardRef}>
       {side === 'right' && <div className="timeline-spacer" />}
 
       <div className="timeline-card-wrapper">
-        <motion.div
-          className="timeline-card"
-          initial={{ opacity: 0, x: xOffset }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{
-            duration: 0.6,
-            ease: [0.16, 1, 0.3, 1],
-            delay: index * 0.15,
-          }}
-        >
+        <motion.div className="timeline-card" style={{ x, opacity, rotate }}>
           <h3 className="timeline-card-role">{exp.role}</h3>
           <div className="timeline-card-stack">{exp.stack}</div>
           <div className="timeline-card-company">{exp.company}</div>
@@ -53,20 +87,10 @@ function TimelineCard({ exp, side, index }: { exp: Experience; side: 'left' | 'r
       {side === 'left' && <div className="timeline-spacer" />}
 
       {/* Node */}
-      <motion.div
-        className="timeline-node"
-        initial={{ scale: 0 }}
-        animate={isInView ? { scale: 1 } : {}}
-        transition={{ duration: 0.4, delay: index * 0.15 + 0.2 }}
-      />
+      <motion.div className="timeline-node" style={{ scale: nodeScale }} />
 
       {/* Connector */}
-      <motion.div
-        className="timeline-connector"
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.4, delay: index * 0.15 + 0.1 }}
-      />
+      <motion.div className="timeline-connector" style={{ opacity: connectorOpacity }} />
     </div>
   );
 }
@@ -114,8 +138,10 @@ export default function Timeline() {
   return (
     <section className="timeline-section" id="experience" ref={sectionRef}>
       <div className="timeline-header">
-        <div className="timeline-title">{t.timeline.title}</div>
-        <div className="timeline-title-line" />
+        <RevealText as="div" className="timeline-title" staggerMs={26}>
+          {t.timeline.title}
+        </RevealText>
+        <DrawLine className="timeline-title-line" height={4} delay={260} />
       </div>
 
       <div className="timeline-container">
@@ -133,7 +159,6 @@ export default function Timeline() {
             key={exp.company}
             exp={exp}
             side={i % 2 === 0 ? 'left' : 'right'}
-            index={i}
           />
         ))}
       </div>

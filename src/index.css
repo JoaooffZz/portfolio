@@ -64,12 +64,21 @@
   padding: 0;
 }
 
+/*
+ * `overflow-x: clip` rather than `hidden` on all three of these.
+ *
+ * `hidden` turns the element into a scroll container, and a scroll container
+ * ancestor is what `position: sticky` resolves against — which silently broke
+ * the pinned hero: it scrolled away in normal flow instead of holding while the
+ * sections below slid over it. `clip` crops overflow identically without
+ * creating a scrollport, so sticky keeps resolving against the viewport.
+ */
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  overflow-x: clip;
   background-color: var(--bg-page);
 }
 
@@ -79,7 +88,7 @@ body {
   font-family: var(--font-body);
   background: var(--bg-page);
   color: var(--color-text);
-  overflow-x: hidden;
+  overflow-x: clip;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -87,7 +96,7 @@ body {
   width: 100%;
   max-width: 100%;
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 a {
@@ -129,6 +138,36 @@ button {
 
 /* ── Selection ── */
 ::selection {
-  background: var(--color-pink);
-  color: var(--color-white);
+  background: var(--color-accent);
+  color: var(--bg-page);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   REDUCED MOTION
+   framer-motion transitions are handled by <MotionConfig reducedMotion="user">
+   in App.tsx. This block covers the CSS-driven animations, which that config
+   cannot reach: the tech marquee, the scroll arrow bounce, the caret blink,
+   and the smooth-scroll behaviour.
+   ═══════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* The marquee's whole purpose is the scroll, so freezing it mid-keyframe
+     would leave the track visually truncated. Park it at its start instead. */
+  .carousel-track,
+  .carousel-track.reverse {
+    animation: none !important;
+    transform: translateX(0) !important;
+  }
 }

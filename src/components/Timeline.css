@@ -30,12 +30,13 @@
   transition: color 0.3s ease;
 }
 
+/* See the note on .libraries-title-line — rendered as an <svg> by <DrawLine>. */
 .timeline-title-line {
+  display: block;
   width: 80px;
   height: 4px;
-  background: var(--color-border);
   margin: 0 auto;
-  transition: background-color 0.3s ease;
+  overflow: visible;
 }
 
 /* ── Timeline Container ── */

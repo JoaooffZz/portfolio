@@ -1,0 +1,17 @@
+/* ═══════════════════════════════════════════
+   RevealText — anime.js split output
+   ═══════════════════════════════════════════ */
+
+/*
+ * The word wrappers anime.js emits. Chars carry both data-char and data-word,
+ * so :not([data-char]) isolates the wrappers.
+ *
+ * `nowrap` is a correctness fix, not a nicety. Splitting to chars turns every
+ * glyph into its own inline-block, and each box's width is rounded up to a whole
+ * pixel — so a split word measures slightly wider than the same text unsplit.
+ * On narrow viewports that overflow was enough to make the browser break *inside*
+ * a word ("MARTIN / S"), which unsplit text would never do.
+ */
+[data-word]:not([data-char]) {
+  white-space: nowrap;
+}

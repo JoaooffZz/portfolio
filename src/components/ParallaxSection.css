@@ -1,0 +1,66 @@
+/* ═══════════════════════════════════════════
+   Parallax layers
+   ═══════════════════════════════════════════ */
+
+.parallax-layer {
+  position: relative;
+  width: 100%;
+}
+
+/*
+ * The transform lives on the inner wrapper so the outer box keeps its natural
+ * size in the flow. Drifting the outer box directly would let sections pull
+ * apart and expose the page background at their seams.
+ */
+.parallax-layer-inner {
+  position: relative;
+  width: 100%;
+  will-change: transform;
+}
+
+/*
+ * Sections that scroll over the pinned hero need an opaque background — and it
+ * has to live on the outer box, not the drifting inner one.
+ *
+ * With the background on `.parallax-layer-inner`, the drift moved the paint
+ * along with the content and left a transparent strip the height of the drift at
+ * each section seam, through which the pinned hero showed. The outer box never
+ * moves, so it always covers its full extent.
+ */
+.parallax-layer--tech,
+.parallax-layer--libraries,
+.parallax-layer--timeline,
+.parallax-layer--contact {
+  background: var(--bg-page);
+  transition: background-color 0.3s ease;
+}
+
+/* ── Hero pinning (desktop only) ── */
+@media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+  .parallax-layer--hero {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    /* Pinned layer must sit behind everything that scrolls over it. */
+    z-index: 0;
+  }
+
+  .parallax-hero-inner {
+    height: 100vh;
+    /* The receding scale needs an origin at the top so the hero appears to
+       sink away from the viewer rather than shrink toward its own centre. */
+    transform-origin: center 35%;
+  }
+}
+
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  /* No pinning: plain document flow, no transform budget spent. */
+  .parallax-layer--hero {
+    position: relative;
+    z-index: 0;
+  }
+
+  .parallax-layer-inner {
+    will-change: auto;
+  }
+}

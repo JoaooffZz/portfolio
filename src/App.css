@@ -5,32 +5,9 @@
 .parallax-stack {
   position: relative;
   width: 100%;
-}
-
-/* Each layer uses sticky positioning for the parallax "cake layer" effect */
-.parallax-layer {
-  position: relative;
-  width: 100%;
-}
-
-.parallax-layer--hero {
-  z-index: 1;
-}
-
-.parallax-layer--tech {
-  z-index: 2;
-}
-
-.parallax-layer--libraries {
-  z-index: 3;
-}
-
-.parallax-layer--timeline {
-  z-index: 4;
-}
-
-.parallax-layer--contact {
-  z-index: 5;
+  /* Establishes the stacking context the layer z-indexes are resolved in, and
+     the perspective root for the card/photo tilt effects below. */
+  isolation: isolate;
 }
 
 .controls-container {

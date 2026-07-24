@@ -1,26 +1,17 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
 import { useLanguage } from '../hooks/useLanguage';
+import { RevealText } from './RevealText';
 import './Contact.css';
 
 export default function Contact() {
   const { t } = useLanguage();
-  const titleRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(titleRef, { once: true, margin: '-100px' });
 
   return (
     <section className="contact-section" id="contact">
       <div className="contact-inner">
-        {/* Title */}
-        <motion.h2
-          ref={titleRef}
-          className="contact-title"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        >
+        {/* Title — per-character reveal; RevealText owns its own in-view trigger. */}
+        <RevealText as="h2" className="contact-title" staggerMs={30} duration={1000}>
           {t.contact.title}
-        </motion.h2>
+        </RevealText>
 
         {/* Card */}
         <div className="contact-card">

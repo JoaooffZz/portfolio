@@ -31,12 +31,16 @@
   transition: color 0.3s ease;
 }
 
+/* Rendered as an <svg> by <DrawLine>. The rule carries the box only — the
+   colour lives on the <line>'s stroke so the draw animation has something to
+   reveal. A `background` here would paint the full bar on the first frame and
+   defeat the whole effect. */
 .libraries-title-line {
+  display: block;
   width: 80px;
   height: 4px;
-  background: var(--color-border);
   margin: 0 auto;
-  transition: background-color 0.3s ease;
+  overflow: visible;
 }
 
 /* ── Container ── */
@@ -61,6 +65,11 @@
   border-radius: 4px;
   width: 100%;
   overflow: hidden;
+  /* Fallback for the first paint, before ThemeToggle's effect stamps
+     data-theme on <html>. The tilt hook interpolates this variable into an
+     inline box-shadow, and an undefined colour would invalidate the whole
+     declaration. */
+  --card-shadow-color: var(--color-shadow);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -78,6 +87,26 @@
 .library-card:hover {
   transform: translate(-4px, -4px);
   box-shadow: 12px 12px 0px 0px var(--card-shadow-color);
+}
+
+/*
+ * Tilt-enabled cards: the transform and shadow are driven frame-by-frame from
+ * useTilt, so the CSS transition on those two properties has to go — otherwise
+ * every spring update is re-eased by CSS and the motion smears.
+ * The :hover rule is dropped for the same reason.
+ */
+.library-card--tilt {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.library-card--tilt .library-banner {
+  /* The logo drifts inside its container; a hidden overflow keeps the drift
+     from spilling over the card border. */
+  will-change: transform;
+}
+
+.library-card--tilt .library-banner-container {
+  overflow: hidden;
 }
 
 /* ── Banner/Logo area ── */
@@ -312,7 +341,10 @@
     padding: 24px;
   }
 
+  /* 20px, and wrapping allowed: "PERMGUARD" at 24px in Syne 850 uppercase
+     overflowed the card at 390px and was clipped by the card's overflow:hidden. */
   .library-name {
-    font-size: 24px;
+    font-size: 20px;
+    overflow-wrap: anywhere;
   }
 }

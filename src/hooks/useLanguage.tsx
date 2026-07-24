@@ -11,7 +11,8 @@ interface TranslationKeys {
   };
   tech: {
     mobileFrontend: string;
-    backendDevops: string;
+    backend: string;
+    devops: string;
   };
   libraries: {
     title: string;
@@ -64,7 +65,8 @@ const translations: Record<Language, TranslationKeys> = {
     },
     tech: {
       mobileFrontend: 'Mobile & Frontend',
-      backendDevops: 'Backend & DevOps',
+      backend: 'Backend & Dados',
+      devops: 'DevOps & Cloud',
     },
     libraries: {
       title: 'Bibliotecas de Autoria Própria',
@@ -152,7 +154,8 @@ const translations: Record<Language, TranslationKeys> = {
     },
     tech: {
       mobileFrontend: 'Mobile & Frontend',
-      backendDevops: 'Backend & DevOps',
+      backend: 'Backend & Data',
+      devops: 'DevOps & Cloud',
     },
     libraries: {
       title: 'Self-Authored Libraries',
