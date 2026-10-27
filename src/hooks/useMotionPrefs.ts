@@ -93,10 +93,10 @@ export interface MotionPrefs {
   isSmallScreen: boolean;
   /** Safe to mount a WebGL canvas. */
   allow3D: boolean;
-  /** Safe to run scroll-linked transforms. */
-  allowParallax: boolean;
-  /** Safe to run pointer-driven tilt. */
-  allowTilt: boolean;
+  /** Upper bound on the canvas pixel ratio. */
+  maxDpr: number;
+  /** Safe to run pointer-driven effects (magnetic buttons, scene parallax). */
+  allowPointerFx: boolean;
 }
 
 export function useMotionPrefs(): MotionPrefs {
@@ -114,16 +114,16 @@ export function useMotionPrefs(): MotionPrefs {
     prefersReduced,
     isTouch: device.isTouch,
     isSmallScreen: device.isSmallScreen,
-    // 3D is the most expensive thing we do: desktop-only, full tier only.
-    allow3D:
-      tier === 'full' &&
-      !device.isSmallScreen &&
-      !device.isTouch &&
-      supportsWebGL(),
-    // Parallax is cheap (compositor-only) but pointless when reduced.
-    allowParallax: tier !== 'none',
-    // Tilt needs a real hovering pointer, and it fights the stacked mobile
-    // layouts (which re-rotate elements themselves at narrow widths).
-    allowTilt: tier === 'full' && !device.isTouch && !device.isSmallScreen,
+    /*
+     * The stage scene is a few dozen extruded hexagons and line segments — no
+     * textures, no shadow maps, no post-processing — so phones can run it too.
+     * It is withheld only when the visitor asked for less motion (the whole
+     * scene is scroll-driven camera movement) or for less data.
+     */
+    allow3D: !prefersReduced && !device.saveData && supportsWebGL(),
+    // Weak and touch devices tend to pair small GPUs with 3x screens: cap the
+    // fill rate rather than the feature.
+    maxDpr: device.isWeak || device.isTouch ? 1.5 : 2,
+    allowPointerFx: tier === 'full' && !device.isTouch,
   };
 }

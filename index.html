@@ -1,16 +1,49 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>João Paulo Soares Martins — Engenheiro de Software</title>
-    <meta name="description" content="Portfólio de João Paulo Soares Martins, Engenheiro de Software Full-Stack especializado em Golang e Flutter. Freelancer baseado em Teresina, Piauí." />
+    <title>João Paulo Soares Martins — Engenheiro de Software Backend</title>
+    <meta
+      name="description"
+      content="Engenheiro de Software Backend focado em pagamentos e carteira digital. Go, arquitetura hexagonal, DDD, webhooks idempotentes e bibliotecas open-source. Teresina, PI."
+    />
     <meta name="author" content="João Paulo Soares Martins" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="canonical" href="https://joaooffzz.github.io/portfolio/" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:url" content="https://joaooffzz.github.io/portfolio/" />
+    <meta property="og:title" content="João Paulo Soares Martins — Engenheiro de Software Backend" />
+    <meta
+      property="og:description"
+      content="Go para pagamentos, assinaturas e integrações com gateways. Arquitetura hexagonal, DDD e bibliotecas open-source."
+    />
+    <meta name="twitter:card" content="summary" />
+
+    <!-- Theme before first paint: saved choice, else the OS preference. -->
+    <script>
+      (function () {
+        var theme;
+        try {
+          theme = localStorage.getItem('theme');
+        } catch (e) {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="root"></div>

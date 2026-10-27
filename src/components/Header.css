@@ -1,0 +1,173 @@
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  height: var(--header-height);
+  transition:
+    background-color 0.3s var(--ease-standard),
+    border-color 0.3s var(--ease-standard);
+  border-bottom: 1px solid transparent;
+}
+
+.site-header.is-scrolled {
+  background: var(--color-glass);
+  border-bottom-color: var(--color-divider);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+}
+
+.site-header-inner {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.site-header-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  justify-self: start;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.hex-mark {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.6s var(--ease-reveal);
+}
+
+.site-header-brand:hover .hex-mark {
+  transform: rotate(60deg);
+}
+
+.hex-mark-core {
+  fill: var(--color-accent);
+}
+
+.site-header-nav {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.site-header-link {
+  padding: 0.5rem 0.85rem;
+  font-size: var(--text-small);
+  color: var(--color-text-soft);
+  transition: color 0.2s var(--ease-standard);
+}
+
+.site-header-link:hover {
+  color: var(--color-text);
+}
+
+.roll-text {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  line-height: 1.4;
+}
+
+.roll-text-inner {
+  display: inline-block;
+  position: relative;
+  transition: transform 0.45s var(--ease-reveal);
+}
+
+.roll-text-inner::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+
+a:hover .roll-text-inner {
+  transform: translateY(-100%);
+}
+
+.site-header-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.lang-switch {
+  display: inline-flex;
+  gap: 0.3rem;
+  min-height: 36px;
+  padding: 0 0.6rem;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-faint);
+}
+
+.lang-switch .is-on {
+  color: var(--color-text);
+}
+
+.lang-switch:hover span:not(.is-on) {
+  color: var(--color-text-muted);
+}
+
+/* Sun knob slides across to become a cratered moon. */
+.theme-switch {
+  padding: 4px;
+}
+
+.theme-switch-track {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 28px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  transition: background-color 0.4s var(--ease-standard);
+}
+
+.theme-switch-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #f5c84a;
+  box-shadow: 0 0 0 3px rgba(245, 200, 74, 0.18);
+  transition:
+    transform 0.55s cubic-bezier(0.56, -0.02, 0.64, 1),
+    background-color 0.4s var(--ease-standard),
+    box-shadow 0.4s var(--ease-standard);
+}
+
+.theme-switch[aria-checked='true'] .theme-switch-knob {
+  transform: translateX(22px);
+  background: #e8e8e8;
+  box-shadow:
+    inset -4px -3px 0 0 #bdbdbd,
+    0 0 0 3px rgba(255, 255, 255, 0.06);
+}
+
+.site-header-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--color-accent);
+  transform-origin: left center;
+}
+
+@media (max-width: 860px) {
+  .site-header-inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  .site-header-nav {
+    display: none;
+  }
+}
